@@ -1,0 +1,16 @@
+#include<cmath>
+#include<iostream>
+#include<glm/vec3.hpp>
+#include "color.hpp"
+#include <string>
+
+class Shape {
+public:
+	Shape();
+	Shape(std::string name, Color color);
+	virtual float area() const = 0;
+	virtual float volumen() const = 0;
+private:
+	std::string name_;
+	Color color_;
+};
