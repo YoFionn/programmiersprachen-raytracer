@@ -10,3 +10,12 @@ Shape::Shape():
 Shape::Shape(std::string name, Color color):
 	name_{name},
 	color_{color}{}
+
+std::ostream& Shape::print(std::ostream& os) const {
+	os << "name: " << name_ << ", Farbe: (" << color_.r << ", " << color_.g << ", " << color_.b << ")";
+	return os;
+}
+
+std::ostream& operator<<(std::ostream& os, Shape const& s) {
+	return s.print(os);
+}
