@@ -33,3 +33,11 @@ float Sphere::volumen() const{
 	return abs((4.0f / 3.0f) * M_PI* std::pow(r_, 3));
 };
 
+std::ostream& Sphere::print(std::ostream& os) const{
+	Shape::print(os);
+	os << "Objekt-typ Kreis" << std::endl;
+	os << "Radius" << r_ << std::endl;
+	os << "Oberflächeninhalt: " << area() << std::endl;
+	os << "Volumen: " << volumen() << std::endl;
+}
+

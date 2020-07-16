@@ -24,3 +24,13 @@ float Box::area() const{
 float Box::volumen() const {
 	return abs(pow((max_.x - min_.x), 3));
 }
+
+std::ostream& Box::print(std::ostream& os) const {
+	Shape::print(os);
+	os << "Objekt-typ Kreis" << std::endl;
+	os << "Oberflächeninhalt: " << area() << std::endl;
+	os << "Volumen: " << volumen() << std::endl;
+	os << "Minimum: (" << min_.x << " | " << min_.y << " | " << min_.z << ")" << std::endl;
+	os << "Maximum: (" << max_.x << " | " << max_.y << " | " << max_.z << ")" << std::endl;
+	return os;
+}

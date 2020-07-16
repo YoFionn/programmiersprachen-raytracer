@@ -11,6 +11,7 @@ public:
 	virtual float area() const = 0;
 	virtual float volumen() const = 0;
 	virtual std::ostream& print(std::ostream& os) const;
+
 private:
 	std::string name_;
 	Color color_;
