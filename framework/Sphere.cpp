@@ -39,5 +39,6 @@ std::ostream& Sphere::print(std::ostream& os) const{
 	os << "Radius" << r_ << std::endl;
 	os << "Oberflächeninhalt: " << area() << std::endl;
 	os << "Volumen: " << volumen() << std::endl;
+	return os;
 }
 
