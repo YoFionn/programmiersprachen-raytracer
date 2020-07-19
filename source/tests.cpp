@@ -2,6 +2,8 @@
 #include <catch.hpp>
 #include "Sphere.cpp"
 #include "Box.cpp"
+#include <glm/glm.hpp >
+#include <glm/gtx/intersect.hpp>
 
 TEST_CASE("Berechnen der Operfläche und des Volumen der Sphäre","[aufgabe 5.2]") {
 	Sphere s1{};
@@ -30,6 +32,27 @@ TEST_CASE("Berechnen der Operfläche und des Volumen der Box", "[aufgabe 5.2]") {
 	REQUIRE(b1.volumen() == Approx(1.0f));
 	REQUIRE(b2.volumen() == Approx(0.0f));
 	REQUIRE(b3.volumen() == Approx(125.0f));
+}
+
+TEST_CASE("intersect_ray_sphere", "[intersect]") {
+	//Ray
+	glm::vec3 ray_origin{ 0.0f, 0.0f, 0.0f };
+	// ray direction has to be normalized !
+	// you can use:
+	//	v = glm::normalize(some_vector)
+	glm::vec3 ray_direction{ 0.0f, 0.0f, 1.0f };
+	//Sphere
+
+	glm::vec3 sphere_center{ 0.0f, 0.0f, 5.0f };
+	float sphere_radius{ 1.0f };
+
+	float distance = 0.0f;
+	auto result = glm::intersectRaySphere(
+		ray_origin, ray_direction,
+		sphere_center,
+		sphere_radius * sphere_radius, //square radius!!
+		distance);
+	REQUIRE(distance == Approx(4.0f));
 }
 
 int main(int argc, char *argv[])
