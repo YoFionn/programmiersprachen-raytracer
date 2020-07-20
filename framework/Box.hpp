@@ -1,3 +1,6 @@
+#ifndef BOX_HPP
+#define BOX_HPP
+
 #include<glm/vec3.hpp>
 
 class Box : public Shape {
@@ -14,3 +17,5 @@ private:
 	glm::vec3 min_;
 	glm::vec3 max_;
 };
+
+#endif

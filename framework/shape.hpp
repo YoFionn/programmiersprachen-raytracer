@@ -1,6 +1,9 @@
-#include<cmath>
-#include<iostream>
-#include<glm/vec3.hpp>
+#ifndef SHAPE_HPP
+#define SHAPE_HPP
+
+#include <cmath>
+#include <iostream>
+#include <glm/vec3.hpp>
 #include "color.hpp"
 #include <string>
 
@@ -11,10 +14,13 @@ public:
 	virtual float area() const = 0;
 	virtual float volumen() const = 0;
 	virtual std::ostream& print(std::ostream& os) const;
+	~Shape();
 
-private:
+protected:
 	std::string name_;
 	Color color_;
 };
 
 std::ostream& operator<<(std::ostream& os, Shape const& s);
+
+#endif

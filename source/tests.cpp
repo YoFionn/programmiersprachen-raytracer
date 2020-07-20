@@ -2,8 +2,11 @@
 #include <catch.hpp>
 #include "Sphere.cpp"
 #include "Box.cpp"
+#include "ray.hpp"
+#include "hitpoint.hpp"
 #include <glm/glm.hpp >
 #include <glm/gtx/intersect.hpp>
+#include <iostream>
 
 TEST_CASE("Berechnen der Operfläche und des Volumen der Sphäre","[aufgabe 5.2]") {
 	Sphere s1{};
@@ -52,10 +55,32 @@ TEST_CASE("intersect_ray_sphere", "[intersect]") {
 		sphere_center,
 		sphere_radius * sphere_radius, //square radius!!
 		distance);
-	REQUIRE(distance == Approx(4.0f));
 }
+
+TEST_CASE("intersect_ray_sphere_testzz", "[intersect]") {
+	Sphere s1{ 7.0f, {25.0f, 68.0f, 12.0f}, "Krueger", {3.0f, 5.0f, 1.0f} };
+	Sphere s2{ 1.0f, {0.0f, 0.0f, 0.0f}, "Schroedinger", {3.0f, 5.0f, 1.0f} };
+	Ray r1{ {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 1.0f} };
+	HitPoint h1{s1.intersect(r1)};
+	HitPoint h2{ s2.intersect(r1) };
+	REQUIRE(h1.intersect == false);
+	REQUIRE(h2.intersect == true);
+
+
+
+}
+
 
 int main(int argc, char *argv[])
 {
-  return Catch::Session().run(argc, argv);
+	Sphere print_s_test{ 7.0f, {25.0f, 68.0f, 12.0f}, "Krueger", {3.0f, 5.0f, 1.0f} };
+	Box print_b_test{ {3.0f, 5.0f, 1.0f}, {25.0f, 68.0f, 12.0f}, "Schroedinger", {3.0f, 5.0f, 1.0f} };
+	std::cout << print_s_test << std::endl;
+	std::cout << print_b_test << std::endl;
+
+	Sphere* s = new Sphere{ 7.0f, {25.0f, 68.0f, 12.0f}, "Krueger", {3.0f, 5.0f, 1.0f} };
+	Box* b = new Box{ {3.0f, 5.0f, 1.0f}, {25.0f, 68.0f, 12.0f}, "Schroedinger", {3.0f, 5.0f, 1.0f} };
+	delete s;	//hier wird der Destruktor aufgerufen
+	delete b;	//hier wird der Destruktor aufgerufen
+	return Catch::Session().run(argc, argv);
 }
